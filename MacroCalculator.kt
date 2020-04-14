@@ -35,10 +35,12 @@ fun main() {
 
             2 -> removeFood()
 
+            3 -> calculateTotalMacros()
+
             else -> runInput = endInput.nextInt()
         }
 
-        
+
     }
 }
 
@@ -74,38 +76,37 @@ fun userInputFood() {
 
     allFoodMacros.add(newFood)
 
-    println()
 
-    println("Today's Food Log: ")
-
-    println()
-
-    for (food in allFoodMacros) {
-
-        println(food)
-
-
-    }
 
     println()
 
-    println("Do you wish to add food information? Enter 0 to stop.")
+    printFoodLog()
 
     println()
 
-    println("Enter 1 to add a Food item.")
+    nextDecision()
 
-    println()
-
-    println("If you wish to remove an item, enter 2.")
-
-    println()
-
-    runInput = endInput.nextInt()
-
-
-
-    macroInput = Scanner(System.`in`)
+//    println("Do you wish to add food information? Enter 0 to stop.")
+//
+//    println()
+//
+//    println("Enter 1 to add a Food item.")
+//
+//    println()
+//
+//    println("If you wish to remove an item, enter 2.")
+//
+//    println()
+//
+//    println("If you wish to calculate your total macros consumed so far today, enter 3.")
+//
+//    println()
+//
+//    runInput = endInput.nextInt()
+//
+//
+//
+//    macroInput = Scanner(System.`in`)
 
 
 }
@@ -115,17 +116,19 @@ fun removeFood() {
 
     println("Which food item do you wish to remove from your food log? Enter the corresponding number of the food item for removal")
 
-    var counter: Int = 0
+    printFoodLog()
 
-    for (food in allFoodMacros) {
-
-
-        println(counter.toString() + " --- " + food)
-
-        counter++
-
-
-    }
+//    var counter: Int = 0
+//
+//    for (food in allFoodMacros) {
+//
+//
+//        println(counter.toString() + " --- " + food)
+//
+//        counter++
+//
+//
+//    }
 
     var removeFoodAt: Int = removalInput.nextInt()
 
@@ -134,14 +137,96 @@ fun removeFood() {
     println("The Food log now contains: ")
 
 
-    for (food in allFoodMacros) {
+    printFoodLog()
 
-        println(food)
+//    for (food in allFoodMacros) {
+//
+//        println(food)
+//
+//
+//    }
 
+    println()
+
+    nextDecision()
+
+//    println("Do you wish to add food information? Enter 0 to stop.")
+//
+//    println()
+//
+//    println("Enter 1 to add a Food item.")
+//
+//    println()
+//
+//    println("If you wish to remove another item, enter 2.")
+//
+//    println()
+//
+//    println("If you wish to calculate your total macros consumed so far today, enter 3.")
+//
+//    println()
+//
+//    runInput = endInput.nextInt()
+//
+//    macroInput = Scanner(System.`in`)
+
+}
+
+fun calculateTotalMacros(){
+
+    var totalCalories: Double = 0.0
+
+    var totalCarbohydrates: Double = 0.0
+
+    var totalFats: Double = 0.0
+
+    var totalProteins: Double = 0.0
+
+    for(food in allFoodMacros){
+
+        totalCalories += food.calories
+
+        totalCarbohydrates += food.carbs
+
+        totalFats += food.fat
+
+        totalProteins += food.protein
 
     }
 
+    printFoodLog()
+
+    println("_________________________________________________________________")
+
     println()
+
+    println("The total of your macros for today is currently: ")
+
+    println()
+
+    println(totalCalories.toString() + " calories consumed.")
+
+    println()
+
+    println(totalCarbohydrates.toString() + " carbs consumed.")
+
+    println()
+
+    println(totalFats.toString() + " fats consumed.")
+
+    println()
+
+    println(totalProteins.toString() + " proteins consumed.")
+
+    println()
+
+    nextDecision()
+
+
+}
+
+fun nextDecision(){
+
 
     println("Do you wish to add food information? Enter 0 to stop.")
 
@@ -155,8 +240,33 @@ fun removeFood() {
 
     println()
 
+    println("If you wish to calculate your total macros consumed so far today, enter 3.")
+
+    println()
+
     runInput = endInput.nextInt()
 
     macroInput = Scanner(System.`in`)
+
+}
+
+fun printFoodLog(){
+    var counter: Int = 0
+
+    println("Today's Food Log:")
+
+    println("_________________________________________________________________")
+
+    println()
+
+    for (food in allFoodMacros) {
+
+
+        println(counter.toString() + " --- " + food)
+
+        counter++
+
+
+    }
 
 }
