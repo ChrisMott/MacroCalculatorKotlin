@@ -1,4 +1,7 @@
-class Food(var name: String, var servings: Double, var calories: Double, var carbs: Double, var fat: Double, var protein: Double){
+
+
+
+open class Food(var name: String, var servings: Double, var calories: Double, var carbs: Double, var fat: Double, var protein: Double){
 
 
 
@@ -13,18 +16,6 @@ override fun toString(): String {
 
 
 }
-
-//    var name: String = ""
-//
-//    var servings: Double = 0.0
-//
-//    var calories: Double = 0.0
-//
-//    var carbs: Double = 0.0
-//
-//    var fat: Double = 0.0
-//
-//    var protein: Double = 0.0
 
 
 

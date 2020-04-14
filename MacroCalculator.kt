@@ -3,15 +3,16 @@
 import java.util.*
 import kotlin.collections.ArrayList
 
-//data class Food(var name:String, var servings:Double, var calories:Double, var carbs:Double, var fat:Double, var protein:Double)
+val allFoodMacros: MutableList<Food> = ArrayList()
+
+var macroInput = Scanner(System.`in`)
+
+var runInput: Int = 1
+
+var endInput = Scanner(System.`in`)
 
 fun main(){
 
-    //var allFoodMacros = arrayOf<Food>()
-
-    val allFoodMacros: MutableList<Food> = ArrayList()
-
-    var macroInput = Scanner(System.`in`)
 
 
     var greenBeans = Food("Green Beans", 4.0, 140.0, 24.0, 0.0, 8.0 )
@@ -23,45 +24,73 @@ fun main(){
 
     allFoodMacros.add(eggs)
 
-    println("Enter a piece of food or meal that you made starting with it's name: ")
+    println("Welcome to the Macro Calculator! This calculator will help you track your macro-nutrients on a daily basis.")
 
-    val enteredFoodName: String = macroInput.nextLine()
 
-    println("Enter the amount of servings consumed: ")
-
-    val enteredServings: Double = macroInput.nextDouble()
-
-    println("Enter the amount of calories per serving: ")
-
-    val enteredCalories: Double = macroInput.nextDouble()
-
-    println("Enter the amount of carbohydrates per serving: ")
-
-    val enteredCarbs: Double = macroInput.nextDouble()
-
-    println("Enter the amount of fats per serving: ")
-
-    val enteredFats: Double = macroInput.nextDouble()
-
-    println("Enter the amount of proteins per serving: ")
-
-    val enteredProteins: Double = macroInput.nextDouble()
+    while( runInput != 0) {
 
 
 
-    var newFood = Food(enteredFoodName,enteredServings,enteredCalories,enteredCarbs,enteredFats,enteredProteins)
-
-    allFoodMacros.add(newFood)
 
 
+        userInputFood()
+
+
+
+        }
+
+    println("Today's Food Log: ")
+    println()
 
     for(food in allFoodMacros){
 
         println(food)
 
 
+    }
 
     }
+
+
+
+
+
+
+fun userInputFood(){
+
+    println("Enter a piece of food or meal that you made starting with it's name: ")
+
+    var enteredFoodName: String = macroInput.nextLine()
+
+    println("Enter the amount of servings consumed: ")
+
+    var enteredServings: Double = macroInput.nextDouble()
+
+    println("Enter the amount of calories per serving: ")
+
+    var enteredCalories: Double = macroInput.nextDouble()
+
+    println("Enter the amount of carbohydrates per serving: ")
+
+    var enteredCarbs: Double = macroInput.nextDouble()
+
+    println("Enter the amount of fats per serving: ")
+
+    var enteredFats: Double = macroInput.nextDouble()
+
+    println("Enter the amount of proteins per serving: ")
+
+    var enteredProteins: Double = macroInput.nextDouble()
+
+    var newFood = Food(enteredFoodName,enteredServings,enteredCalories,enteredCarbs,enteredFats,enteredProteins)
+
+    allFoodMacros.add(newFood)
+
+    println("Do you wish to keep adding food information? Press 0 to stop. Press any other key to add another item.")
+
+    runInput = endInput.nextInt()
+
+    macroInput = Scanner(System.`in`)
 
 
 }
