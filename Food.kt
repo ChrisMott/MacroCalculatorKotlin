@@ -7,7 +7,7 @@ class Food(var name: String, var servings: Double, var calories: Double, var car
 
 override fun toString(): String {
 
-    var returnMacros: String = "Food is " + name + " " + servings + " servings " + calories + " calories " + carbs + " carbs " +  fat + " fats " + protein + " proteins."
+    var returnMacros: String = name + " " + servings + " servings " + calories + " calories " + carbs + " carbs " +  fat + " fats " + protein + " proteins."
 
     return returnMacros
 
