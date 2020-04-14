@@ -1,5 +1,3 @@
-
-
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -7,15 +5,16 @@ val allFoodMacros: MutableList<Food> = ArrayList()
 
 var macroInput = Scanner(System.`in`)
 
+var removalInput = Scanner(System.`in`)
+
 var runInput: Int = 1
 
 var endInput = Scanner(System.`in`)
 
-fun main(){
+fun main() {
 
 
-
-    var greenBeans = Food("Green Beans", 4.0, 140.0, 24.0, 0.0, 8.0 )
+    var greenBeans = Food("Green Beans", 4.0, 140.0, 24.0, 0.0, 8.0)
 
     var eggs = Food("Eggs", 1.0, 20.0, 5.0, 12.0, 16.0)
 
@@ -27,36 +26,25 @@ fun main(){
     println("Welcome to the Macro Calculator! This calculator will help you track your macro-nutrients on a daily basis.")
 
 
-    while( runInput != 0) {
+    while (runInput != 0) {
 
 
+        when (runInput) {
 
+            1 -> userInputFood()
 
+            2 -> removeFood()
 
-        userInputFood()
-
-
-
+            else -> runInput = endInput.nextInt()
         }
 
-    println("Today's Food Log: ")
-    println()
-
-    for(food in allFoodMacros){
-
-        println(food)
-
-
+        
     }
-
-    }
-
+}
 
 
+fun userInputFood() {
 
-
-
-fun userInputFood(){
 
     println("Enter a piece of food or meal that you made starting with it's name: ")
 
@@ -82,15 +70,93 @@ fun userInputFood(){
 
     var enteredProteins: Double = macroInput.nextDouble()
 
-    var newFood = Food(enteredFoodName,enteredServings,enteredCalories,enteredCarbs,enteredFats,enteredProteins)
+    var newFood = Food(enteredFoodName, enteredServings, enteredCalories, enteredCarbs, enteredFats, enteredProteins)
 
     allFoodMacros.add(newFood)
 
-    println("Do you wish to keep adding food information? Press 0 to stop. Press any other key to add another item.")
+    println()
+
+    println("Today's Food Log: ")
+
+    println()
+
+    for (food in allFoodMacros) {
+
+        println(food)
+
+
+    }
+
+    println()
+
+    println("Do you wish to add food information? Enter 0 to stop.")
+
+    println()
+
+    println("Enter 1 to add a Food item.")
+
+    println()
+
+    println("If you wish to remove an item, enter 2.")
+
+    println()
+
+    runInput = endInput.nextInt()
+
+
+
+    macroInput = Scanner(System.`in`)
+
+
+}
+
+fun removeFood() {
+
+
+    println("Which food item do you wish to remove from your food log? Enter the corresponding number of the food item for removal")
+
+    var counter: Int = 0
+
+    for (food in allFoodMacros) {
+
+
+        println(counter.toString() + " --- " + food)
+
+        counter++
+
+
+    }
+
+    var removeFoodAt: Int = removalInput.nextInt()
+
+    allFoodMacros.removeAt(removeFoodAt)
+
+    println("The Food log now contains: ")
+
+
+    for (food in allFoodMacros) {
+
+        println(food)
+
+
+    }
+
+    println()
+
+    println("Do you wish to add food information? Enter 0 to stop.")
+
+    println()
+
+    println("Enter 1 to add a Food item.")
+
+    println()
+
+    println("If you wish to remove another item, enter 2.")
+
+    println()
 
     runInput = endInput.nextInt()
 
     macroInput = Scanner(System.`in`)
-
 
 }
