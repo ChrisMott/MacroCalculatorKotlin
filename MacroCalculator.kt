@@ -1,9 +1,12 @@
 import java.util.*
+
 import kotlin.collections.ArrayList
 
 val allFoodMacros: MutableList<Food> = ArrayList()
 
 var macroInput = Scanner(System.`in`)
+
+var macroGoalInput = Scanner(System.`in`)
 
 var removalInput = Scanner(System.`in`)
 
@@ -11,19 +14,21 @@ var runInput: Int = 1
 
 var endInput = Scanner(System.`in`)
 
+var macroGoals = MacroGoals(0.0,0.0,0.0,0.0)
+
 fun main() {
 
 
-    var greenBeans = Food("Green Beans", 4.0, 140.0, 24.0, 0.0, 8.0)
-
-    var eggs = Food("Eggs", 1.0, 20.0, 5.0, 12.0, 16.0)
-
-    allFoodMacros.add(greenBeans)
-
-
-    allFoodMacros.add(eggs)
 
     println("Welcome to the Macro Calculator! This calculator will help you track your macro-nutrients on a daily basis.")
+
+    macroGoals = setMacroGoals()
+
+    println()
+
+    println("Now we will enter a food item into the Food Log.")
+
+    println()
 
 
     while (runInput != 0) {
@@ -86,29 +91,6 @@ fun userInputFood() {
 
     nextDecision()
 
-//    println("Do you wish to add food information? Enter 0 to stop.")
-//
-//    println()
-//
-//    println("Enter 1 to add a Food item.")
-//
-//    println()
-//
-//    println("If you wish to remove an item, enter 2.")
-//
-//    println()
-//
-//    println("If you wish to calculate your total macros consumed so far today, enter 3.")
-//
-//    println()
-//
-//    runInput = endInput.nextInt()
-//
-//
-//
-//    macroInput = Scanner(System.`in`)
-
-
 }
 
 fun removeFood() {
@@ -118,17 +100,7 @@ fun removeFood() {
 
     printFoodLog()
 
-//    var counter: Int = 0
-//
-//    for (food in allFoodMacros) {
-//
-//
-//        println(counter.toString() + " --- " + food)
-//
-//        counter++
-//
-//
-//    }
+
 
     var removeFoodAt: Int = removalInput.nextInt()
 
@@ -139,58 +111,35 @@ fun removeFood() {
 
     printFoodLog()
 
-//    for (food in allFoodMacros) {
-//
-//        println(food)
-//
-//
-//    }
+
 
     println()
 
     nextDecision()
 
-//    println("Do you wish to add food information? Enter 0 to stop.")
-//
-//    println()
-//
-//    println("Enter 1 to add a Food item.")
-//
-//    println()
-//
-//    println("If you wish to remove another item, enter 2.")
-//
-//    println()
-//
-//    println("If you wish to calculate your total macros consumed so far today, enter 3.")
-//
-//    println()
-//
-//    runInput = endInput.nextInt()
-//
-//    macroInput = Scanner(System.`in`)
+
 
 }
 
 fun calculateTotalMacros(){
 
-    var totalCalories: Double = 0.0
+    var totalCaloriesConsumed: Double = 0.0
 
-    var totalCarbohydrates: Double = 0.0
+    var totalCarbohydratesConsumed: Double = 0.0
 
-    var totalFats: Double = 0.0
+    var totalFatsConsumed: Double = 0.0
 
-    var totalProteins: Double = 0.0
+    var totalProteinsConsumed: Double = 0.0
 
     for(food in allFoodMacros){
 
-        totalCalories += food.calories
+        totalCaloriesConsumed += food.calories
 
-        totalCarbohydrates += food.carbs
+        totalCarbohydratesConsumed += food.carbs
 
-        totalFats += food.fat
+        totalFatsConsumed += food.fat
 
-        totalProteins += food.protein
+        totalProteinsConsumed += food.protein
 
     }
 
@@ -204,21 +153,37 @@ fun calculateTotalMacros(){
 
     println()
 
-    println(totalCalories.toString() + " calories consumed.")
+    println(totalCaloriesConsumed.toString() + " calories consumed.")
 
     println()
 
-    println(totalCarbohydrates.toString() + " carbs consumed.")
+    println(totalCarbohydratesConsumed.toString() + " carbs consumed.")
 
     println()
 
-    println(totalFats.toString() + " fats consumed.")
+    println(totalFatsConsumed.toString() + " fats consumed.")
 
     println()
 
-    println(totalProteins.toString() + " proteins consumed.")
+    println(totalProteinsConsumed.toString() + " proteins consumed.")
 
     println()
+
+    println("__________________________________________________________________")
+
+    println()
+
+    println(macroGoals.toString() )
+
+    println()
+
+    println("The remaining balance of Macro Nutrients you have available for consumption today is: \n" +
+            " ${macroGoals.calories - totalCaloriesConsumed}  calories \n" +
+            " ${macroGoals.carbs - totalCarbohydratesConsumed} grams of carbs \n" +
+            " ${macroGoals.fats - totalFatsConsumed} grams of fats \n" +
+            " ${macroGoals.proteins - totalProteinsConsumed} grams of proteins")
+
+
 
     nextDecision()
 
@@ -268,5 +233,42 @@ fun printFoodLog(){
 
 
     }
+
+}
+
+fun setMacroGoals() : MacroGoals{
+
+    println()
+
+    println("We will now set up you Macro-Nutrient Target Goals.")
+
+    println()
+
+    println("Please enter your numeric (in decimal form, example 0.0) target goal for total calories.")
+
+    var macroGoalsCal : Double = macroGoalInput.nextDouble()
+
+    println()
+
+    println("Please enter your numeric (in decimal form, example 0.0) target goal for total carbohydrates in grams.")
+
+    var macroGoalsCarbs : Double = macroGoalInput.nextDouble()
+
+    println()
+
+    println("Please enter your numeric (in decimal form, example 0.0) target goal for total fats in grams.")
+
+    var macroGoalsFats : Double = macroGoalInput.nextDouble()
+
+    println()
+
+    println("Please enter your numeric (in decimal form, example 0.0) target goal for total proteins in grams.")
+
+    var macroGoalsProteins : Double = macroGoalInput.nextDouble()
+
+    var newMacroGoals = MacroGoals(macroGoalsCal,macroGoalsCarbs,macroGoalsFats,macroGoalsProteins)
+
+    return newMacroGoals
+
 
 }
